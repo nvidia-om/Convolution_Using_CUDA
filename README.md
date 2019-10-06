@@ -14,12 +14,12 @@ A project to compare time taken by CPU and GPU to carry out convolution operatio
       * Output exe will be in path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\bin\win64\Release
     
 # Project Setup in Visual Studio 2015 Professional
--> File->New->Project
--> Select Templates->NVIDIA->CUDA 10.1->CUDA 10.1 Runtime
--> Give project a name. E.g. 2D_Convolution_Using_Shared_Memory
--> Go to "Properties" of the project:
-	-> Set "Output Directory" and "Intermediate Directory" under "General" tab as:
-		Output Directory : $(SolutionDir)output\$(Configuration)\
-		Intermediate Directory : $(SolutionDir)build\$(ProjectName)_$(Configuration)\
-	-> Set "Code Generation" under "CUDA C/C++->Device" tab as:
-		Code Generation : compute_30,sm_30;compute_35,sm_35;compute_37,sm_37;compute_50,sm_50;compute_52,sm_52;compute_60,sm_60;compute_61,sm_61;compute_70,sm_70;compute_75,sm_75;
+* File->New->Project
+* Select Templates->NVIDIA->CUDA 10.1->CUDA 10.1 Runtime
+* Give project a name. E.g. 2D_Convolution_Using_Shared_Memory
+* Go to "Properties" of the project:
+   * Set "Output Directory" and "Intermediate Directory" under "General" tab as:
+      Output Directory : $(SolutionDir)output\$(Configuration)\
+      Intermediate Directory : $(SolutionDir)build\$(ProjectName)_$(Configuration)\
+   * Set "Code Generation" under "CUDA C/C++->Device" tab as:
+      Code Generation : compute_30,sm_30;compute_35,sm_35;compute_37,sm_37;compute_50,sm_50;compute_52,sm_52;compute_60,sm_60;compute_61,sm_61;compute_70,sm_70;compute_75,sm_75;
