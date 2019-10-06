@@ -2,16 +2,16 @@
 A project to compare time taken by CPU and GPU to carry out convolution operation
 
 # CUDA Installation
--> Installer: CUDA Toolkit 10.1 Update 2 from https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=7&target_type=exelocal
-	-> Install CUDA and follow on screen prompt
-	-> Once installed,
-		-> To verify correct configuration of hardware and software, build and run the deviceQuery sample program.
-			-> Solution path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\1_Utilities\deviceQuery\deviceQuery_vs2015.sln
-		-> To ensure that the system and the CUDA-capable device are able to communicate correctly, build and run the bandwidthTest program.
-			-> Solution path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\1_Utilities\bandwidthTest\bandwidthTest_vs2015.sln
-		-> To see a graphical representation of what CUDA can do, run the sample Particles program	
-			-> Solution path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\5_Simulations\particles\particles_vs2015.sln
-		-> Output exe will be in path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\bin\win64\Release
+* Installer: CUDA Toolkit 10.1 Update 2 from https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=7&target_type=exelocal
+   * Install CUDA and follow on screen prompt
+   * Once installed:
+      * To verify correct configuration of hardware and software, build and run the deviceQuery sample program.
+         * Solution path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\1_Utilities\deviceQuery\deviceQuery_vs2015.sln
+      * To ensure that the system and the CUDA-capable device are able to communicate correctly, build and run the bandwidthTest program.
+         * Solution path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\1_Utilities\bandwidthTest\bandwidthTest_vs2015.sln
+      * To see a graphical representation of what CUDA can do, run the sample Particles program	
+         * Solution path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\5_Simulations\particles\particles_vs2015.sln
+      * Output exe will be in path: C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.1\bin\win64\Release
     
 # Project Setup in Visual Studio 2015 Professional
 -> File->New->Project
