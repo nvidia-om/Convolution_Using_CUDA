@@ -13,10 +13,10 @@
 * Standard Includes
 \***********************************************************************************/
 #include <iostream>
-#include <string>
 #include <assert.h>
 /* For the CUDA runtime routines (prefixed with "cuda_") */
 #include <cuda_runtime.h>
+#include <time.h>
 
 /***********************************************************************************\
 * # Defines
@@ -100,6 +100,7 @@ typedef struct Cell_Tag
 /***********************************************************************************\
 * Function Macros
 \***********************************************************************************/
+/* Convert matrix index to array index */
 #define MATRIX_TO_ARRAY_INDEX(r_idx, c_idx, num_cols) ((r_idx*num_cols) + c_idx)
 
 /***********************************************************************************\
@@ -456,6 +457,7 @@ int main(void)
 	printf("Copy input data from the host memory to the CUDA device\n");
 	checkCuda(cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice), COPY_MATRIX_A_FROM_HOST_TO_DEVICE);
 
+	clock_t tic = clock();
 	/* Launch the 2D Convolution CUDA Kernel */
 	dim3 block_dim(BLOCK_SIZE, BLOCK_SIZE);
 	dim3 grid_dim(((NUM_OF_GLOBAL_COLS + BLOCK_SIZE - 1) / BLOCK_SIZE), ((NUM_OF_GLOBAL_ROWS + BLOCK_SIZE - 1) / BLOCK_SIZE));
@@ -463,7 +465,10 @@ int main(void)
 	conv2DDevice<<<grid_dim, block_dim>>>(d_A, d_B);
 	checkCuda(cudaGetLastError(), LAUNCH_KERNEL_CONV2DDEVICE);
 
+	/* Wait for device to finish running the 2D Convolution */
 	checkCuda(cudaDeviceSynchronize(), DEVICE_SYNCHRONIZATION);
+	clock_t toc = clock();
+	printf("2D Convolution on GPU time: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);
 
 	/* Copy the device result vector in device memory to the host result vector
 	   in host memory */
@@ -471,12 +476,15 @@ int main(void)
 	checkCuda(cudaMemcpy(h_B, d_B, size, cudaMemcpyDeviceToHost), COPY_MATRIX_B_FROM_DEVICE_TO_HOST);
 
 	/* Verify that the result vector is correct */
+	tic = clock();
 	Result_T result = checkResult(h_A, h_B);
 	if(FAILED == result.status)
 	{
 		fprintf(stderr, "Result verification failed at element %d!\n", result.index);
 		exit(EXIT_FAILURE);
 	}
+	toc = clock();
+	printf("2D Convolution on CPU time: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);
 
 	printf("Test PASSED\n");
 
